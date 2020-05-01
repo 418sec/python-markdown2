@@ -2164,12 +2164,12 @@ class Markdown(object):
         text = self._naked_gt_re.sub('&gt;', text)
         return text
 
-    _incomplete_tags_re = re.compile("(\b)(on\S+)(\s*)=|javascript|(<\s*)(\/*)script")
+    _incomplete_tags_re = re.compile("<(/?\w+[\s/]+?)")
 
     def _encode_incomplete_tags(self, text):
         if self.safe_mode not in ("replace", "escape"):
             return text
-
+        self._incomplete_tags_re.re.sub("(\b)(on\S+)=",'', text)
         return self._incomplete_tags_re.sub("&lt;\\1", text)
 
     def _encode_backslash_escapes(self, text):
