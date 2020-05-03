@@ -2169,7 +2169,7 @@ class Markdown(object):
     def _encode_incomplete_tags(self, text):
         if self.safe_mode not in ("replace", "escape"):
             return text
-        re.sub(r'(\b)(on\S+)=','', text)
+        re.sub(r'(\b)(on\S+)=|(on\S+\s*([! ])\s*)=','', text)
         return self._incomplete_tags_re.sub("&lt;\\1", text)
 
     def _encode_backslash_escapes(self, text):
